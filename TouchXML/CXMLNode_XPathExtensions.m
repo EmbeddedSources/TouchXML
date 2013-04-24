@@ -59,7 +59,7 @@ theXPathContext->node = _node;
 // TODO considering putting xmlChar <-> UTF8 into a NSString category
 xmlXPathObjectPtr theXPathObject = xmlXPathEvalExpression((const xmlChar *)[xpath UTF8String], theXPathContext);
 if (xmlXPathNodeSetIsEmpty(theXPathObject->nodesetval))
-	theResult = [NSArray array]; // TODO better to return NULL?
+	theResult = @[]; // TODO better to return NULL?
 else
 	{
 	NSMutableArray *theArray = [NSMutableArray array];
