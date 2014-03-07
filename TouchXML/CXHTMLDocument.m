@@ -134,7 +134,9 @@
                 CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(encoding);
                 CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
                 const char *enc = CFStringGetCStringPtr(cfencstr, 0);
-                theDoc = htmlReadMemory([inData bytes], [inData length], NULL, enc, HTML_PARSE_NONET | HTML_PARSE_NOBLANKS | HTML_PARSE_NOWARNING);
+                    int castedDataLength = (int)[inData length];
+                    
+                theDoc = htmlReadMemory([inData bytes], castedDataLength, NULL, enc, HTML_PARSE_NONET | HTML_PARSE_NOBLANKS | HTML_PARSE_NOWARNING);
                 }
 
             if (theDoc != NULL)

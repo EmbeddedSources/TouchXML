@@ -125,7 +125,9 @@
                 CFStringEncoding cfenc = CFStringConvertNSStringEncodingToEncoding(encoding);
                 CFStringRef cfencstr = CFStringConvertEncodingToIANACharSetName(cfenc);
                 const char *enc = CFStringGetCStringPtr(cfencstr, 0);
-                theDoc = xmlCtxtReadMemory( xmlCtxt, [inData bytes], [inData length], NULL, enc, XML_PARSE_RECOVER | XML_PARSE_NOWARNING);
+
+                int castedDataLength = (int)[inData length];
+                theDoc = xmlCtxtReadMemory( xmlCtxt, [inData bytes], castedDataLength, NULL, enc, XML_PARSE_RECOVER | XML_PARSE_NOWARNING);
                 }
 
             if (theDoc != NULL && xmlDocGetRootElement(theDoc) != NULL)
